@@ -5,11 +5,11 @@ namespace Minesweeper;
 
 public class Minesweeper //Made public for the unitTests (can be private without)
 {
-    private static int coordinate;
     private static int[] position = new int[2];
+    private static int fieldSize = 5;
     static void Main()
     {
-        var field = new MineFieldGraph(5, 5);
+        var field = new MineFieldGraph(fieldSize, fieldSize);
 
         //set the bombs...
         field.SetBomb(0, 0);
@@ -69,7 +69,7 @@ public class Minesweeper //Made public for the unitTests (can be private without
 
     public static void DrawMinefieldState(MineFieldGraph field)
     {
-        int rowIndex = 4;
+        int rowIndex = fieldSize - 1;
         Console.WriteLine("The new game state is: ");
         Console.WriteLine("  01234");
         while (rowIndex > -1)
@@ -77,7 +77,7 @@ public class Minesweeper //Made public for the unitTests (can be private without
             Console.Write(rowIndex + "|");
             for (int i = 0; i < field.GetWidth(); i++)
             {
-                Console.Write(field.squares[i, rowIndex].GetActiveIcon());
+                Console.Write(field.node[i, rowIndex].GetActiveIcon());
             }
             rowIndex--;
             Console.Write("\n");
@@ -97,8 +97,7 @@ public class Minesweeper //Made public for the unitTests (can be private without
             int index = 0;
             foreach (char item in playerGuess)
             {
-                //bool isNumberInput = int.TryParse(item.ToString(), out coordinate);
-                if (!int.TryParse(item.ToString(), out coordinate) || coordinate > 4)
+                if (!int.TryParse(item.ToString(), out var coordinate) || coordinate > fieldSize - 1)
                 {
                     Console.WriteLine("Not a valid position input. Please input coordinates between 0-4!");
                     return false;
