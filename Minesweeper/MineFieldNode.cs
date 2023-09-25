@@ -14,7 +14,6 @@ namespace Minesweeper
     {
         #region Properties
         int x, y;
-        Point point;
         public bool isBomb;
         public List<MineFieldNode> adjacentSquares;
         string uncoveredIcon;
@@ -27,7 +26,6 @@ namespace Minesweeper
         {
             this.x = x;
             this.y = y;
-            point = new Point(x, y); //Could remove/replace this
             adjacentSquares = new List<MineFieldNode>();
             coveredIcon = "?";
             uncovered = false;

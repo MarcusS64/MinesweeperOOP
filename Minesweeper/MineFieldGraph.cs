@@ -61,11 +61,7 @@ public class MineFieldGraph
 
     public bool FoundBomb(int x, int y)
     {
-        if (squares[x, y].isBomb)
-        {
-            return true;
-        }
-        return false;
+        return squares[x, y].isBomb;
     }
 
     public void UpdateMinefieldMap(int x, int y) //Use BFS search to traverse the field
